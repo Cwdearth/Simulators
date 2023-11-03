@@ -35,7 +35,7 @@ public class Plant implements Growable {
         lifeForce: A number that will
      */
 
-    public Plant(String plantName, double nutrientDemand, double waterDemand, double growthRate, double grownWhen, double producingRequirement, int yieldRequirement, double deathCycles, Cycler cycler) {
+    public Plant(String plantName, double nutrientDemand, double waterDemand, double growthRate, double grownWhen, double producingRequirement, int yieldRequirement, double deathCycles, Cycler cycler){
         this.plantName = plantName;
         this.nutrientDemand = nutrientDemand;
         this.waterDemand = waterDemand;
@@ -45,18 +45,17 @@ public class Plant implements Growable {
         this.yieldRequirement = yieldRequirement;
         this.cycler = cycler;
         this.deathCycles = deathCycles;
-        blueprint = this;
     }
 
     public String getPlantName() {
         if (size < grownWhen)
-            return plantName + " seed.";
+            return plantName + " seed";
         else
-            return "Grown " + plantName + ".";
+            return "Grown " + plantName;
     }
 
     @Override
-    public Plantable cycleEvent(Plantable growingLocation) {
+    public Plantable cycleEvent(Plantable growingLocation){
         updateConditionLevel(growingLocation);
         growingLocation.waterEvent(-waterDemand);
         growingLocation.nutrientEvent(-nutrientDemand);
@@ -70,7 +69,7 @@ public class Plant implements Growable {
                 // THIS CAN BE CUSTOMIZABLE LATER
                 if (yieldTrial >= yieldRequirement) {
                     yieldTrial = 0;
-                    cycler.subscribeGrowable(blueprint);
+                    cycler.subscribeGrowable(new Plant(plantName, nutrientDemand, waterDemand, growthRate, grownWhen, producingRequirement, yieldRequirement, deathCycles, cycler));
                 }
             }
             else
@@ -99,9 +98,8 @@ public class Plant implements Growable {
     }
 
     public String toString() {
-        return "Plant{" +
-                "plantName='" + getPlantName() + '\'' +
-                ", size=" + size +
+        return  getPlantName() +
+                " size=" + size +
                 ", conditionLevel=" + conditionLevel +
                 ", yieldTrial=" + yieldTrial +
                 '}';

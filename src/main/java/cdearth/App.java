@@ -8,8 +8,7 @@ import cdearth.systems.GrowingLandSimulator;
  */
 public class App 
 {
-    public static void main( String[] args )
-    {
+    public static void main( String[] args ) throws CloneNotSupportedException {
         GrowingLandSimulator sim = new GrowingLandSimulator();
         sim.executeSimulator();
     }

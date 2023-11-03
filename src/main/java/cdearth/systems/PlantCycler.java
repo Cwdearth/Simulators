@@ -22,8 +22,7 @@ public class PlantCycler implements Cycler {
     }
 
     public void cycle() {
-        System.out.println("There are " + subscribers.size() + 1 + " Growables On This Land!");
-        System.out.println(growingLocation);
+        System.out.println("\n" + growingLocation);
         for(int i = 0; i < subscribers.size(); i++) {
             growingLocation = subscribers.get(i).cycleEvent(growingLocation);
             System.out.println("Growable #" + i + " " + subscribers.get(i));
